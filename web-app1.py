@@ -19,12 +19,13 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 
-# In[46]:
+# In[65]:
 
 
 st.title('Intractive plotting')
 st.header('Department of Technology')
 st.header('The university of Lahore')
+st.header('Developed by Hisham')
 
 
 # In[47]:
