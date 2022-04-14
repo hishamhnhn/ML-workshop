@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[45]:
+# In[96]:
 
 
 import streamlit as st
@@ -19,16 +19,16 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 
-# In[67]:
+# In[117]:
 
 
 st.title('Intractive Plotting for Machine Learning Models')
-st.header('Hisham Khalil, Department of Technology, The University of Lahore ')
+st.subheader("Hisham Khalil, Department of Technology, The University of Lahore")
 #st.header('The university of Lahore')
 #st.header('Developed by Hisham')
 
 
-# In[47]:
+# In[98]:
 
 
 #st.image('ai.png')
@@ -40,32 +40,32 @@ st.header('Hisham Khalil, Department of Technology, The University of Lahore ')
 
 
 
-# In[48]:
+# In[99]:
 
 
 dataset_name = st.sidebar.selectbox(
-    "select dataset",
-    ("iris", "wine",'breast_cancer')
+    "Select dataset",
+    ("Iris", "Wine",'Breast_cancer')
 )
 
 
-# In[49]:
+# In[100]:
 
 
 classifier_name = st.sidebar.selectbox(
-    "select model",
-    ("knn", "random forest", "SVM")
+    "Select model",
+    ("KNN", "Random Forest", "SVM")
 )
 
 
-# In[50]:
+# In[101]:
 
 
 def get_dataset(dataset_name):
     data = None
-    if dataset_name == 'iris':
+    if dataset_name == 'Iris':
         data = datasets.load_iris()
-    elif dataset_name == 'wine':
+    elif dataset_name == 'Wine':
         data = datasets.load_wine()
     else:
         data = datasets.load_breast_cancer()
@@ -74,7 +74,7 @@ def get_dataset(dataset_name):
     return x,y
 
 
-# In[51]:
+# In[102]:
 
 
 #dataset_name = ['irsi','wine','canser']
@@ -82,31 +82,31 @@ x,y=get_dataset(dataset_name) # assigning to the return variable x and y while
                   # while geting the dataset
 
 
-# In[52]:
+# In[103]:
 
 
-st.header('Datasets')
+st.subheader('Dataset details')
 
 
-# In[53]:
+# In[104]:
 
 
 #st.write(get_dataset(dataset_name))
 
 
-# In[54]:
+# In[105]:
 
 
 st.write('Shape of dataset:', x.shape)
 
 
-# In[55]:
+# In[106]:
 
 
-st.write('number of classes:', len(np.unique(y))) # getting the number of classes in the dataset 
+st.write('Number of classes:', len(np.unique(y))) # getting the number of classes in the dataset 
 
 
-# In[56]:
+# In[107]:
 
 
 def add_parameter_ui(classifier_name):
@@ -126,13 +126,13 @@ def add_parameter_ui(classifier_name):
         
 
 
-# In[57]:
+# In[108]:
 
 
 params = add_parameter_ui(classifier_name)
 
 
-# In[58]:
+# In[109]:
 
 
 def get_classifier(classifier_name,params):
@@ -147,26 +147,26 @@ def get_classifier(classifier_name,params):
     return clf
 
 
-# In[59]:
+# In[110]:
 
 
 clf = get_classifier(classifier_name,params)
 
 
-# In[60]:
+# In[111]:
 
 
 x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=0)
 
 
-# In[61]:
+# In[112]:
 
 
 clf.fit(x_train,y_train)
 y_pred = clf.predict(x_test)
 
 
-# In[62]:
+# In[113]:
 
 
 acc = accuracy_score(y_test,y_pred)
@@ -174,7 +174,7 @@ st.write(f'Classifies = {classifier_name}')
 st.write(f'Accuracy =',acc)
 
 
-# In[63]:
+# In[114]:
 
 
 # for plotting using PCA which is used for the reduction of the feature 
@@ -183,7 +183,7 @@ pca = PCA(2)
 x_projected = pca.fit_transform(x)
 
 
-# In[64]:
+# In[116]:
 
 
 x1 = x_projected[:,0]
@@ -193,8 +193,8 @@ fig = plt.figure()
 plt.scatter(x1,x2,
             c=y,alpha=0.8,
            cmap='viridis')
-plt.xlabel('component 1')
-plt.ylabel('component 2')
+plt.xlabel('Component 1')
+plt.ylabel('Component 2')
 plt.colorbar()
 st.pyplot(fig)
 
